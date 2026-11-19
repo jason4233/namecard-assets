@@ -4,7 +4,7 @@
 const FALLBACK = vcard.fallbackLink
 function pill (btn) {
   const bg = btn.primary
-    ? { type: 'linearGradient', angle: '90deg', startColor: '#D8B77A', endColor: '#9C7440' }
+    ? { type: 'linearGradient', angle: '90deg', startColor: '#B8914F', endColor: '#7A5626' }
     : { type: 'linearGradient', angle: '90deg', startColor: '#3D2C5C', endColor: '#21162F' }
   return {
     type: 'box', layout: 'vertical', flex: 1, cornerRadius: 'xxl', paddingTop: '8px', paddingBottom: '8px',

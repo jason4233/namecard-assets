@@ -24,9 +24,9 @@ function card (c, i) {
       { type: 'text', text: c.title, size: c.titleSize || 'xxl', weight: 'bold', color: '#FFFFFF', flex: 0, wrap: true },
       ...(c.titleSub ? [{ type: 'text', text: c.titleSub, size: 'md', color: '#CDBFA6', flex: 0 }] : []),
     ] },
-    { type: 'text', text: c.subtitle, size: 'xs', color: '#D9D2E3', wrap: true, margin: 'xs' },
-    { type: 'text', text: '\u201C', size: '3xl', color: '#D8B77A', weight: 'bold', margin: 'md' },
-    { type: 'text', text: c.quote, size: 'md', weight: 'bold', color: '#FFFFFF', wrap: true, offsetTop: '-14px' },
+    { type: 'text', text: c.subtitle, size: 'sm', color: '#E4DDEE', wrap: true, margin: 'xs' },
+    { type: 'text', text: '\u201C', size: 'xxl', color: '#D8B77A', weight: 'bold', margin: 'md' },
+    { type: 'text', text: c.quote, size: 'md', weight: 'bold', color: '#FFFFFF', wrap: true, offsetTop: '-6px' },
   ]
   return {
     type: 'bubble', size: 'giga',
@@ -38,7 +38,7 @@ function card (c, i) {
             action: { type: 'uri', label: 'open', uri: _.trim(c.link || FALLBACK) } },
           { type: 'box', layout: 'vertical', position: 'absolute', offsetTop: '0px', offsetStart: '0px', width: '100%', height: '100%',
             paddingAll: '20px', justifyContent: 'space-between',
-            background: { type: 'linearGradient', angle: '0deg', startColor: '#160C24F5', centerColor: '#160C2260', centerPosition: '55%', endColor: '#160C2240' },
+            background: { type: 'linearGradient', angle: '0deg', startColor: '#160C24F5', centerColor: '#160C2230', centerPosition: '50%', endColor: '#160C22B0' },
             contents: [
               { type: 'box', layout: 'vertical', contents: [
                 { type: 'text', text: 'KuME', size: 'lg', weight: 'bold', color: '#E8D3A2' },
@@ -47,7 +47,7 @@ function card (c, i) {
               { type: 'box', layout: 'vertical', contents: bottom },
             ] },
         ] },
-        { type: 'box', layout: 'vertical', backgroundColor: '#2B1F40', paddingAll: '14px', paddingStart: '20px', paddingEnd: '20px',
+        { type: 'box', layout: 'vertical', backgroundColor: '#2B1F40', height: '56px', justifyContent: 'center', paddingStart: '20px', paddingEnd: '20px',
           contents: [{ type: 'text', text: c.band, size: 'xs', color: '#CFC6DD', wrap: true }] },
         { type: 'box', layout: 'vertical', backgroundColor: '#F5EFE6', paddingAll: '12px', spacing: 'sm',
           contents: [

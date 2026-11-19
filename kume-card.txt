@@ -25,8 +25,16 @@ function card (c, i) {
       ...(c.titleSub ? [{ type: 'text', text: c.titleSub, size: 'md', color: '#CDBFA6', flex: 0 }] : []),
     ] },
     { type: 'text', text: c.subtitle, size: 'sm', color: '#E4DDEE', wrap: true, margin: 'xs' },
-    { type: 'text', text: '\u201C', size: 'xxl', color: '#D8B77A', weight: 'bold', margin: 'md' },
-    { type: 'text', text: c.quote, size: 'md', weight: 'bold', color: '#FFFFFF', wrap: true, offsetTop: '-6px' },
+    ...(c.quote ? [
+      { type: 'text', text: '\u201C', size: 'xxl', color: '#D8B77A', weight: 'bold', margin: 'md' },
+      { type: 'text', text: c.quote, size: 'md', weight: 'bold', color: '#FFFFFF', wrap: true, offsetTop: '-6px' },
+    ] : []),
+    ...(c.box ? [{ type: 'box', layout: 'vertical', backgroundColor: '#F5EFE6E6', cornerRadius: 'md', paddingAll: '12px', spacing: 'xs', margin: 'sm',
+      contents: [
+        { type: 'text', text: c.box.heading, size: 'sm', weight: 'bold', color: '#2B1F40' },
+        { type: 'separator', color: '#CDBFA6', margin: 'sm' },
+        ..._.map(c.box.points, p => ({ type: 'text', text: '\u25C6 ' + p, size: 'xs', color: '#3A2E4D', wrap: true, margin: 'sm' })),
+      ] }] : []),
   ]
   return {
     type: 'bubble', size: 'giga',
@@ -40,7 +48,7 @@ function card (c, i) {
             paddingAll: '20px', justifyContent: 'space-between',
             background: { type: 'linearGradient', angle: '0deg', startColor: '#160C24F5', centerColor: '#160C2230', centerPosition: '50%', endColor: '#160C22B0' },
             contents: [
-              { type: 'box', layout: 'vertical', contents: [
+              { type: 'box', layout: 'vertical', contents: c.noHeader ? [{ type: 'filler' }] : [
                 { type: 'text', text: 'KuME', size: 'lg', weight: 'bold', color: '#E8D3A2' },
                 { type: 'text', text: 'EXOSOME BEAUTY', size: 'xxs', color: '#E9E2F2' },
               ] },

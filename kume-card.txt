@@ -1,0 +1,65 @@
+<%
+/* global vcard */
+// KuME 名片樣板：照片滿版＋字壓在照片上、深色資訊帶、米色底部膠囊按鈕（仿 Benson 那張）
+const FALLBACK = vcard.fallbackLink
+function pill (btn) {
+  const bg = btn.primary
+    ? { type: 'linearGradient', angle: '90deg', startColor: '#D8B77A', endColor: '#9C7440' }
+    : { type: 'linearGradient', angle: '90deg', startColor: '#3D2C5C', endColor: '#21162F' }
+  return {
+    type: 'box', layout: 'vertical', flex: 1, cornerRadius: 'xxl', paddingTop: '8px', paddingBottom: '8px',
+    background: bg, justifyContent: 'center',
+    action: { type: 'uri', label: btn.text, uri: _.trim(btn.link || FALLBACK) },
+    contents: [
+      { type: 'text', text: btn.icon, size: 'md', align: 'center' },
+      { type: 'text', text: btn.text, size: 'xs', weight: 'bold', color: '#FFFFFF', align: 'center' },
+    ],
+  }
+}
+function card (c, i) {
+  const n = vcard.cards.length
+  const bottom = [
+    ...(c.eyebrow ? [{ type: 'text', text: c.eyebrow, size: 'xxs', color: '#D8B77A', weight: 'bold' }] : []),
+    { type: 'box', layout: 'baseline', spacing: 'sm', contents: [
+      { type: 'text', text: c.title, size: c.titleSize || 'xxl', weight: 'bold', color: '#FFFFFF', flex: 0, wrap: true },
+      ...(c.titleSub ? [{ type: 'text', text: c.titleSub, size: 'md', color: '#CDBFA6', flex: 0 }] : []),
+    ] },
+    { type: 'text', text: c.subtitle, size: 'xs', color: '#D9D2E3', wrap: true, margin: 'xs' },
+    { type: 'text', text: '\u201C', size: '3xl', color: '#D8B77A', weight: 'bold', margin: 'md' },
+    { type: 'text', text: c.quote, size: 'md', weight: 'bold', color: '#FFFFFF', wrap: true, offsetTop: '-14px' },
+  ]
+  return {
+    type: 'bubble', size: 'giga',
+    body: {
+      type: 'box', layout: 'vertical', paddingAll: '0px', spacing: 'none',
+      contents: [
+        { type: 'box', layout: 'vertical', paddingAll: '0px', contents: [
+          { type: 'image', url: c.image, size: 'full', aspectMode: 'cover', aspectRatio: '3:4', gravity: 'center',
+            action: { type: 'uri', label: 'open', uri: _.trim(c.link || FALLBACK) } },
+          { type: 'box', layout: 'vertical', position: 'absolute', offsetTop: '0px', offsetStart: '0px', width: '100%', height: '100%',
+            paddingAll: '20px', justifyContent: 'space-between',
+            background: { type: 'linearGradient', angle: '0deg', startColor: '#160C24F5', centerColor: '#160C2260', centerPosition: '55%', endColor: '#160C2240' },
+            contents: [
+              { type: 'box', layout: 'vertical', contents: [
+                { type: 'text', text: 'KuME', size: 'lg', weight: 'bold', color: '#E8D3A2' },
+                { type: 'text', text: 'EXOSOME BEAUTY', size: 'xxs', color: '#E9E2F2' },
+              ] },
+              { type: 'box', layout: 'vertical', contents: bottom },
+            ] },
+        ] },
+        { type: 'box', layout: 'vertical', backgroundColor: '#2B1F40', paddingAll: '14px', paddingStart: '20px', paddingEnd: '20px',
+          contents: [{ type: 'text', text: c.band, size: 'xs', color: '#CFC6DD', wrap: true }] },
+        { type: 'box', layout: 'vertical', backgroundColor: '#F5EFE6', paddingAll: '12px', spacing: 'sm',
+          contents: [
+            { type: 'text', text: (i + 1) + '/' + n, size: 'xxs', color: '#9A9187', align: 'center' },
+            { type: 'box', layout: 'horizontal', spacing: 'sm', contents: _.map(c.btns, pill) },
+          ] },
+      ],
+    },
+  }
+}
+print(JSON.stringify({
+  type: 'flex', altText: vcard.altText,
+  contents: { type: 'carousel', contents: _.map(vcard.cards, card) },
+}))
+%>

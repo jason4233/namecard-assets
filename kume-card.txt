@@ -7,12 +7,12 @@ function pill (btn) {
     ? { type: 'linearGradient', angle: '90deg', startColor: '#B8914F', endColor: '#7A5626' }
     : { type: 'linearGradient', angle: '90deg', startColor: '#3D2C5C', endColor: '#21162F' }
   return {
-    type: 'box', layout: 'vertical', flex: 1, cornerRadius: 'xxl', paddingTop: '8px', paddingBottom: '8px',
+    type: 'box', layout: 'vertical', flex: btn.flex || 1, cornerRadius: 'xxl', paddingTop: '8px', paddingBottom: '8px',
     background: bg, justifyContent: 'center',
     action: { type: 'uri', label: btn.text, uri: _.trim(btn.link || FALLBACK) },
     contents: [
       { type: 'text', text: btn.icon, size: 'md', align: 'center' },
-      { type: 'text', text: btn.text, size: 'xs', weight: 'bold', color: '#FFFFFF', align: 'center' },
+      { type: 'text', text: btn.text, size: 'xs', weight: 'bold', color: '#FFFFFF', align: 'center', wrap: true },
     ],
   }
 }

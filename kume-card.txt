@@ -51,7 +51,7 @@ function card (c, i) {
             contents: [
               { type: 'box', layout: 'vertical', contents: c.noHeader ? [{ type: 'filler' }] : [
                 { type: 'text', text: 'KuME', size: 'lg', weight: 'bold', color: '#E8D3A2' },
-                { type: 'text', text: 'EXOSOME BEAUTY', size: 'xxs', color: '#E9E2F2' },
+                { type: 'text', text: 'SKIN CARE', size: 'xxs', color: '#E9E2F2' },
               ] },
               { type: 'box', layout: 'vertical', contents: bottom },
             ] },

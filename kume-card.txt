@@ -68,8 +68,9 @@ function card (c, i) {
     },
   }
 }
-print(JSON.stringify({
+const flexMsg = {
   type: 'flex', altText: vcard.altText,
   contents: { type: 'carousel', contents: _.map(vcard.cards, card) },
-}))
+}
+print(JSON.stringify(vcard.introText ? [{ type: 'text', text: vcard.introText }, flexMsg] : flexMsg))
 %>

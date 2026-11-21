@@ -50,8 +50,9 @@ function card (c, i) {
             background: { type: 'linearGradient', angle: '0deg', startColor: '#160C24F5', centerColor: '#160C2230', centerPosition: '50%', endColor: '#160C22B0' },
             contents: [
               { type: 'box', layout: 'vertical', contents: c.noHeader ? [{ type: 'filler' }] : [
-                { type: 'text', text: 'KuME', size: 'lg', weight: 'bold', color: '#E8D3A2' },
-                { type: 'text', text: 'SKIN CARE', size: 'xxs', color: '#E9E2F2' },
+                { type: 'box', layout: 'vertical', width: '150px', contents: [
+                  { type: 'image', url: 'https://raw.githubusercontent.com/jason4233/namecard-assets/main/kume_logo_h.png', size: 'full', aspectRatio: '764:240', aspectMode: 'fit', align: 'start' },
+                ] },
               ] },
               { type: 'box', layout: 'vertical', contents: bottom },
             ] },
